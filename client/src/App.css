@@ -1,0 +1,604 @@
+#root {
+  /* Make the app fit the full screen width instead of centering in the middle */
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 1rem 0.5rem;
+  text-align: left;
+}
+
+/* Apply sensible box-sizing globally to avoid accidental overflow */
+html, body, #root, .app-root {
+  box-sizing: border-box;
+}
+*, *:before, *:after { box-sizing: inherit; }
+
+/* Prevent horizontal page scroll caused by inner containers */
+html, body { width: 100%; overflow-x: hidden; }
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+/* Improve selection visibility to avoid white-on-white highlights */
+::selection {
+  background: #2196f3;
+  color: #fff;
+}
+
+/* Header and controls */
+.app-header {
+  background: #fff;
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+.app-header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: #1a73e8;
+  background: rgba(33,150,243,0.1);
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.controls {
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+.controls .login-form {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+.controls .login-form input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #111;
+  min-width: 180px;
+}
+.controls button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+}
+.controls button[disabled] { opacity: 0.6; cursor: not-allowed; }
+.error { color: #b00020; font-weight: 600; margin-right: 8px; }
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.message .reactions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.reaction-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.reaction-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.reaction-btn.active {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+}
+
+.reaction-btn .count {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.composer {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f8f8f8;
+  border-top: 1px solid #eee;
+}
+
+.composer input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.composer button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #2196f3;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.composer button:hover {
+  background: #1976d2;
+}
+
+.composer button:disabled {
+  background: #bdbdbd;
+  cursor: not-allowed;
+}
+
+.file-share {
+  padding: 0.5rem 1rem;
+  background: #f8f8f8;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.app-root { 
+  display: flex; 
+  flex-direction: column; 
+  height: 100vh;
+  background: #f5f5f5;
+}
+.chat-container { 
+  display: flex; 
+  flex: 1; 
+  gap: 1rem; 
+  padding: 1rem; 
+  height: calc(100vh - 120px); 
+}
+
+.sidebar { 
+  width: 260px; 
+  background: #f8f8f8; 
+  padding: 1rem; 
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.chat-header {
+  background: #1a1a1a;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2d2d2d;
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: white;
+}
+
+/* Force dark text inside the chat panel so messages are readable even when the
+   global page theme is dark. This ensures light message backgrounds show dark
+   text instead of inheriting white from the root. */
+.chat, .chat * {
+  color: #111;
+}
+
+/* Room styles */
+.room-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  margin: 8px 0;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #333;
+  font-weight: 500;
+}
+
+.room-item:hover {
+  background: #f5f5f5;
+  border-color: #bbb;
+}
+
+.room-item.active {
+  background: #e3f2fd;
+  border-color: #2196f3;
+  color: #1976d2;
+}
+
+/* File upload styles */
+.file-upload {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: #f8f8f8;
+  border-top: 1px solid #ddd;
+}
+
+.file-upload input[type="file"] {
+  display: none;
+}
+
+.file-upload label {
+  background: #e0e0e0;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #333;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+}
+
+.file-upload label:hover {
+  background: #d0d0d0;
+}
+
+/* Message composer styles */
+.composer {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: #f8f8f8;
+  border-top: 1px solid #ddd;
+}
+
+.composer input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 24px;
+  font-size: 1rem;
+  background: white;
+  color: #333;
+}
+
+.composer input::placeholder {
+  color: #999;
+}
+
+.composer button {
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.composer button:hover {
+  background: #1976d2;
+}
+
+.composer button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+}
+
+.load-more {
+  align-self: center;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin: 1rem 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.load-more:hover {
+  background: #e0e0e0;
+}
+
+.load-more:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.message {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f0f0f0;
+  margin: 8px 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  align-self: flex-start;
+  border: 1px solid #e0e0e0;
+}
+
+.message.outgoing {
+  background: #e3f2fd;
+  align-self: flex-end;
+  border-color: #bbdefb;
+}
+
+.message.system {
+  background: #e8f5e9;
+  text-align: center;
+  font-style: italic;
+  max-width: 100%;
+  color: #2E7D32;
+  border-color: #c8e6c9;
+}
+
+.message .body {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.message .meta {
+  font-size: 0.85em;
+  color: #666;
+  margin-bottom: 4px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.message .sender {
+  font-weight: 600;
+  color: #2196f3;
+}
+
+.message .time {
+  color: #888;
+  font-size: 0.9em;
+}
+
+.message a {
+  color: #2196f3;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.message a:hover {
+  text-decoration: underline;
+}
+
+.profile { 
+  display: flex; 
+  gap: 0.5rem; 
+  align-items: center; 
+  margin-bottom: 1rem;
+  padding: 8px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.avatar { 
+  width: 40px; 
+  height: 40px; 
+  border-radius: 20px; 
+  background: #666; 
+  color: white; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.profile-info button { 
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #1976d2;
+  color: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  cursor: pointer;
+}
+
+/* Ensure profile name text is visible */
+.profile-info strong {
+  color: #111;
+  display: block;
+  font-size: 1rem;
+}
+
+/* Ensure avatar letter contrast */
+.avatar {
+  background: #666;
+  color: #fff;
+}
+
+/* Room creation input and room list text colors */
+.room-creation input {
+  background: #fff;
+  color: #111;
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.rooms-list .room-item,
+.rooms-list .room-item * {
+  color: #222;
+}
+
+.rooms-panel .pinned .room-item,
+.rooms-panel .room-item.pinned {
+  color: #222;
+}
+
+/* File-share area (bottom of chat) */
+.file-share {
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+}
+.file-share .choose-file {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+}
+.file-share .file-name { color: #555; font-size: 0.95rem; }
+.file-share .send-file-btn {
+  margin-left: auto;
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.file-share .send-file-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.room-creation { 
+  display: flex; 
+  gap: 0.5rem; 
+  margin-bottom: 1rem;
+  padding: 8px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.rooms-list ul, .private-list ul { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0;
+}
+
+.room-item, .private-item { 
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 4px 0;
+  background: #fff;
+  border: 1px solid #eee;
+  transition: all 0.2s ease;
+}
+
+.room-item.pinned {
+  background: linear-gradient(90deg, #fff, #fbfbff);
+  border: 1px solid #cfe3ff;
+  box-shadow: 0 1px 0 rgba(33,150,243,0.06);
+}
+
+.room-item:hover, .private-item:hover {
+  background: #f5f5f5;
+}
+
+.room-item.active { 
+  background: #e3f2fd;
+  border-color: #2196f3;
+}
+
+.rooms-list h4, .private-list h4 { 
+  margin: 16px 0 8px;
+  font-size: 1.1em;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 4px;
+}
+
+/* Responsive layout for mobile */
+@media (max-width: 720px) {
+  .chat-container { 
+    flex-direction: column;
+    padding: 0.5rem;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    order: 1;
+    margin-bottom: 8px;
+  }
+
+  .chat {
+    order: 2;
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .messages { padding: 0.75rem; }
+
+  .room-creation input { width: calc(100% - 100px); }
+  .room-creation button { width: 80px; }
+
+  .composer { padding: 0.5rem; }
+  .composer input { padding: 8px; }
+}
