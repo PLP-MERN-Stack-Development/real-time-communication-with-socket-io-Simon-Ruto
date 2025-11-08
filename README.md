@@ -139,9 +139,10 @@ Socket events (selected)
 
 Example screenshots are in the `screenshots/` folder. Add your own screenshots or GIFs there and reference them below.
 
-- `screenshots/general.png` — overall layout
-- `screenshots/rooms.png` — sidebar and rooms
-- `screenshots/edit profile.png` — profile
+![Overview](screenshots/general.png)
+![Rooms](screenshots/rooms.png)
+![Edit Profile](screenshots/edit%20profile.png)
+
 
 You can embed images in this README using relative links, for example:
 
