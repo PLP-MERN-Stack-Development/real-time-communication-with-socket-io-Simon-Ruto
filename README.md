@@ -139,9 +139,9 @@ Socket events (selected)
 
 Example screenshots are in the `screenshots/` folder. Add your own screenshots or GIFs there and reference them below.
 
-- `https://github.com/PLP-MERN-Stack-Development/real-time-communication-with-socket-io-Simon-Ruto/blob/main/screenshots/general.png` — overall layout
-- `screenshots/sidebar.png` — sidebar and rooms
-- `screenshots/chat.png` — messages and composer
+- `screenshots/general.png` — overall layout
+- `screenshots/romms.png` — sidebar and rooms
+- `screenshots/edit profile.png` — profile
 
 You can embed images in this README using relative links, for example:
 
