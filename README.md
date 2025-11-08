@@ -147,6 +147,9 @@ You can embed images in this README using relative links, for example:
 
 ```md
 ![Overview](screenshots/general.png)
+![Rooms](screenshots/rooms.png)
+![Edit Profile](screenshots/edit%20profile.png)
+
 ```
 
 ---
