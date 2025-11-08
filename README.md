@@ -139,7 +139,7 @@ Socket events (selected)
 
 Example screenshots are in the `screenshots/` folder. Add your own screenshots or GIFs there and reference them below.
 
-- `screenshots/general.png` — overall layout
+- `https://github.com/PLP-MERN-Stack-Development/real-time-communication-with-socket-io-Simon-Ruto/blob/main/screenshots/general.png` — overall layout
 - `screenshots/sidebar.png` — sidebar and rooms
 - `screenshots/chat.png` — messages and composer
 
