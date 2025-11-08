@@ -146,7 +146,7 @@ Example screenshots are in the `screenshots/` folder. Add your own screenshots o
 You can embed images in this README using relative links, for example:
 
 ```md
-![Overview](screenshots/overview.png)
+![Overview](screenshots/general.png)
 ```
 
 ---
